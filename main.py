@@ -1,5 +1,6 @@
 import json
-from src.generator import gen_hello
+from src.generator import gen_hello, gen_goodbye
+from src.main_menu import main_menu
 import os
 import getpass
 
@@ -11,21 +12,32 @@ RESET = '\033[0m'
 BOLD = '\033[1m'
 DIM = '\033[2m'
 BLINK = '\033[5m'
+PURPLE = '\033[95m'
+CYAN = '\033[96m'
+RED = '\033[31m'
+
 
 def main():
     os.system('clear')
-    print(f'''{GREEN}
-██████╗  █████╗ ███╗   ██╗██╗  ██╗ ██████╗ ███╗   ███╗ █████╗ ████████╗
-██╔══██╗██╔══██╗████╗  ██║██║ ██╔╝██╔═══██╗████╗ ████║██╔══██╗╚══██╔══╝
-██████╔╝███████║██╔██╗ ██║█████╔╝ ██║   ██║██╔████╔██║███████║   ██║   
-██╔══██╗██╔══██║██║╚██╗██║██╔═██╗ ██║   ██║██║╚██╔╝██║██╔══██║   ██║   
-██████╔╝██║  ██║██║ ╚████║██║  ██╗╚██████╔╝██║ ╚═╝ ██║██║  ██║   ██║   
-╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   
-{RESET}''')
+    print(f'''{PURPLE}{BOLD}┌─────────────────────────────────────────────────────────────────────────┐{RESET}
 
+{GREEN}  ██████╗  █████╗ ███╗   ██╗██╗  ██╗ ██████╗ ███╗   ███╗ █████╗ ████████╗
+  ██╔══██╗██╔══██╗████╗  ██║██║ ██╔╝██╔═══██╗████╗ ████║██╔══██╗╚══██╔══╝
+  ██████╔╝███████║██╔██╗ ██║█████╔╝ ██║   ██║██╔████╔██║███████║   ██║   
+  ██╔══██╗██╔══██║██║╚██╗██║██╔═██╗ ██║   ██║██║╚██╔╝██║██╔══██║   ██║   
+  ██████╔╝██║  ██║██║ ╚████║██║  ██╗╚██████╔╝██║ ╚═╝ ██║██║  ██║   ██║   
+  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   {RESET}
+{PURPLE}{BOLD}
+├─────────────────────────────────────────────────────────────────────────┤{RESET}''')
     try:
-        pin = getpass.getpass(f'Введите {BOLD}ПИН-код: {RESET}', echo_char='*')
+        print(f'  Для выхода из системы введите {CYAN}{BOLD}0000{RESET}')
+        pin = getpass.getpass(f'{CYAN}  Введите {BOLD}ПИН-код: {RESET}', echo_char=f'*')
+
+        if pin == '0000':
+            return
+
         current_user = None
+
         for u in config.values():
             if str(u['pin']) == pin:
                 current_user = u
@@ -33,12 +45,17 @@ def main():
 
         if current_user:
             username = current_user["username"]
+            user_balance = current_user["balance"]
+
             hello = gen_hello()
-            print(f'{hello}{RESET},{GREEN}{BOLD}{username}{RESET}')
+            print(f'  {hello}{RESET}, {PURPLE}{BOLD}{username}{RESET}')
+            print(f'{PURPLE}{BOLD}├─────────────────────────────────────────────────────────────────────────┤{RESET}')
+            main_menu(username, user_balance)
         else:
-            print('Неверный ПИН-код')
+            print(f'  {RED}{BOLD}Неверный ПИН-код{RESET}')
     except ValueError:
-        print('Ошибка: ПИН-код должен состоять из цифр')
+        print(f'  {RED}{BOLD}Ошибка:{RESET} {RED}ПИН-код должен состоять из цифр{RESET}')
+
 
 if __name__ == '__main__':
     main()
