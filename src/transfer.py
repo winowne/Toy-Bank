@@ -29,6 +29,9 @@ def transfer(username, balance):
 
     if not recipient.isalpha():
         print(f'  {RED}{BOLD}Ошибка:{RESET} {RED}{BOLD}Фамилия{RESET} {RED}должна состоять из букв{RESET}')
+        time.sleep(2)
+        from src.main_menu import main_menu
+        main_menu(username, balance)
     else:
         if recipient in all_users:
             print(f'  Получатель: {GREEN}{BOLD}{recipient}{RESET}')
@@ -42,6 +45,8 @@ def transfer(username, balance):
                 if amount_input == '0000':
                     print("  Перевод отменен.")
                     time.sleep(2)
+                    from src.main_menu import main_menu
+                    main_menu(username, balance)
                     return
 
                 amount = int(amount_input)
@@ -83,10 +88,17 @@ def transfer(username, balance):
                     main_menu(username, balance)
                 else:
                     print(f'  {RED}{BOLD}Ошибка:{RESET} Недостаточно средств или неверная сумма!')
+                    time.sleep(2)
                     from src.main_menu import main_menu
                     main_menu(username, balance)
 
             except ValueError:
                 print(f'  {RED}{BOLD}Ошибка:{RESET} {RED}сумма перевода должна состоять из цифр{RESET}')
+                time.sleep(2)
+                from src.main_menu import main_menu
+                main_menu(username, balance)
         else:
             print(f'  {RED}{BOLD}Ошибка:{RESET} Такого {RED}{BOLD}пользователя{RESET} {RED}не существует{RESET}')
+            time.sleep(2)
+            from src.main_menu import main_menu
+            main_menu(username, balance)

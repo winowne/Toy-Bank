@@ -11,6 +11,7 @@ PURPLE = '\033[95m'
 CYAN = '\033[96m'
 RED = '\033[31m'
 
+
 def main_menu(username, balance):
     os.system("clear")
     print(f'''{PURPLE}{BOLD}┌─────────────────────────────────────────────────────────────────────────┐{RESET}
@@ -19,11 +20,19 @@ def main_menu(username, balance):
   {PURPLE}{BOLD}[1]{RESET} Перевести деньги
   {PURPLE}{BOLD}[2]{RESET} Выйти
 {PURPLE}{BOLD}├─────────────────────────────────────────────────────────────────────────┤{RESET}''')
-    choice = int(input(f'{CYAN}{BLINK}->(): {RESET}'))
+
+    try:
+        choice = int(input(f'{CYAN}{BLINK}->(): {RESET}').strip())
+    except ValueError:
+        choice = -1
 
     if choice == 1:
-        transfer(username,balance)
-
+        transfer(username, balance)
     elif choice == 2:
-        gen_goodbye()
+        print(gen_goodbye()) 
         exit()
+    else:
+        print(f'  {RED}{BOLD}Неверный пункт меню!{RESET}')
+        import time
+        time.sleep(1)
+        main_menu(username, balance)

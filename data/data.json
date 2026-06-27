@@ -1,7 +1,17 @@
 {
-  "user1": {
-    "username": "user",
-    "pin": 1234,
-    "balance": 1000
-  }
+    "user1": {
+        "username": "user",
+        "pin": 1234,
+        "balance": 210
+    },
+    "user2": {
+        "username": "root",
+        "pin": 1334,
+        "balance": 1790
+    },
+    "user3": {
+        "username": "павлов",
+        "pin": 1235,
+        "balance": 0
+    }
 }

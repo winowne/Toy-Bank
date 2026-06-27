@@ -34,7 +34,8 @@ def main():
         pin = getpass.getpass(f'{CYAN}  Введите {BOLD}ПИН-код: {RESET}', echo_char=f'*')
 
         if pin == '0000':
-            return
+            print(gen_goodbye())
+            exit()
 
         current_user = None
 
