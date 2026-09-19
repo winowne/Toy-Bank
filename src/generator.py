@@ -1,7 +1,10 @@
 import random
 import json
+from pathlib import Path
 
-with open("data/dataset.json", "r") as f:
+with (Path(__file__).resolve().parent.parent / "data" / "dataset.json").open(
+    encoding="utf-8"
+) as f:
     data = json.load(f)
 
 greetings = data['greetings']

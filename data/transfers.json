@@ -1,0 +1,9 @@
+[
+    {
+        "id": "1c4b8b214986",
+        "created_at": "2026-09-19T14:57:04+00:00",
+        "type": "deposit",
+        "recipient": "user",
+        "amount": 100
+    }
+]

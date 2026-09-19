@@ -1,17 +1,20 @@
 {
     "user1": {
         "username": "user",
-        "pin": 1234,
-        "balance": 210
+        "balance": 310,
+        "pin_hash": "50b3a419a0ac64e4b9164c9e69ef75cc$e8f8501f7de7e3aa169b4368be4685f29361cd68b0ed1b82e8a7393d25f98933",
+        "user_id": "user1"
     },
     "user2": {
         "username": "root",
-        "pin": 1334,
-        "balance": 1790
+        "balance": 1790,
+        "pin_hash": "3d85c345efe788c13096fe78fffa41e2$6479b74f9b7e8baa4559c253747d3fda21dcb13cff3eec97222fe2b356eb5b65",
+        "user_id": "user2"
     },
     "user3": {
         "username": "павлов",
-        "pin": 1235,
-        "balance": 0
+        "balance": 0,
+        "pin_hash": "c19ef4b1dbfbf83dba67371aad825a88$6ce0d63b34ed66dfa366055505f4d372bc1cc54577a9697372b39cc57876a5df",
+        "user_id": "user3"
     }
 }
